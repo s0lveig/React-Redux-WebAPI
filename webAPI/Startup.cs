@@ -46,6 +46,8 @@ namespace webAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
             
             app.UseCors("AllowAll");
 
@@ -54,6 +56,8 @@ namespace webAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {

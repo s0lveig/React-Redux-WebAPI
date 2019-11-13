@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using webAPI.Models;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +14,11 @@ namespace webAPI.Controllers {
     public class ChairsController : Controller {
 
         private readonly FurnitureContext _context;
+        private readonly IWebHostEnvironment _hosting;
 
-        public ChairsController(FurnitureContext context) {
+        public ChairsController(FurnitureContext context, IWebHostEnvironment hosting) {
             _context = context;
+            _hosting = hosting;
         }
 
         [HttpGet]
@@ -27,6 +32,16 @@ namespace webAPI.Controllers {
             _context.Chair.Add(newChair);
             await _context.SaveChangesAsync();
             return newChair;
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public void uploadImg(IFormFile file) {
+            string webrootpath = _hosting.WebRootPath;
+            string absolutepath = Path.Combine($"{webrootpath}/images/{file.FileName}");
+            using(var filestream = new FileStream(absolutepath, FileMode.Create)) {
+                file.CopyTo(filestream);
+            }
         }
 
         [HttpPut]

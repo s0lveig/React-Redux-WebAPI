@@ -8,6 +8,9 @@ import Footer from './Components/Footer';
 import ChairContainer from './Components/ChairContainer';
 import TableContainer from './Components/TableContainer';
 
+/**
+ * The main project application page, containing the Routing funcionality.
+ */
 function App() {
 
   return (

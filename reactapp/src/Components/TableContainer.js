@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Table from './Table';
 import axios from 'axios';
 
+/**
+ * The container component for tables,
+ * with some initial data filling the table array in case datebase is not connected.
+ */
 class TableContainer extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +29,11 @@ class TableContainer extends Component {
 
     getTables() {
         let allTables = this.state.tableArray.map( table => {
-            
+            if(table.condition === true) {
+                table.condition = "New";
+            } else {
+                table.condition = "Used";
+            }
             return <Table
                 key={table.id}
                 id={table.id}

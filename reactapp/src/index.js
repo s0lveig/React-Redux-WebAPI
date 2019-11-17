@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import allReducers from './Reducers';
 import * as serviceWorker from './serviceWorker';
 
+/**
+ * Index page providing the redux store as well.
+ */
 const furnitureStore = createStore( allReducers );
 
 ReactDOM.render(<Provider store={furnitureStore}><App /></Provider>, document.getElementById('root'));

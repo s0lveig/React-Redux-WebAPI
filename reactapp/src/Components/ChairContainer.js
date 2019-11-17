@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import Chair from './Chair';
 import axios from 'axios';
 
+/**
+ * The container component for chairs,
+ * with some initial data filling the chair array in case datebase is not connected.
+ */
 class ChairContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
           chairArray: [
               {
-                  id: 0,
                   title: "title",
                   producer: "producer",
                   designer: "designer",

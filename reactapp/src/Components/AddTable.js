@@ -5,6 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
+
+/**
+ * Functional component for a Modal with the form for adding a table to the database.
+ * Containing a few default values in case nothing is typed into form.
+ */
 const AddTable = (props) => {
   const { show, closeModal } = props;
   const [ state, setState ] = useState({
@@ -52,7 +57,7 @@ const AddTable = (props) => {
         function setImg() {
             let imgFile = "imgfile"
             if(file.files[0] === undefined){
-                imgFile = "lcm.jpg"
+                imgFile = "ltr.jpg"
             } else { 
                 axios({
                     method: 'post',
@@ -68,14 +73,13 @@ const AddTable = (props) => {
         axios.post("https://localhost:5001/tables", newTable);
         closeModal();
         alert("New table added!");
-        //window.location.reload();
     }
 
   return (
     <>
       <Modal show={show} onHide={closeModal} animation={false}>
         <Modal.Header closeButton>
-                    <Modal.Title>Add Product</Modal.Title>
+                    <Modal.Title>Add Table</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={ addNewTable }>

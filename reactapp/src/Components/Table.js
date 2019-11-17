@@ -5,6 +5,13 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
+
+/**
+ * Functional component for displaying tables,
+ * as well as containing the functions for deleting and editing a table.
+ * Editing is done via a Modal connected to each table, thereby having that tables 
+ * default values in case nothing is edited.
+ */
 const Table = (props) => {
     const [ state, setState ] = useState('');
     const [show, setShow] = useState(false);
@@ -25,7 +32,6 @@ const Table = (props) => {
         axios.delete("https://localhost:5001/tables/" + id);
         setShow(false);
         alert("Table deleted!");
-        window.location.reload();
     }
 
     const editTable = ( event ) => {
@@ -91,12 +97,11 @@ const Table = (props) => {
         axios.put("https://localhost:5001/tables", updateTable);
         setShow(false);
         alert("Table updated!");
-        pageReload();
     }
 
     return(
         <>
-        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2">
+        <div key="k" className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2">
             <div className="card shadow-sm">
                 <img src={ 'https://localhost:5001/images/' + props.image} alt={props.image} className="card-img-top" />
                 <div className="card-body">
@@ -122,7 +127,7 @@ const Table = (props) => {
                 </div>
             </div>
         </div>
-        <Modal show={show} onHide={hideModal} animation={false}>
+        <Modal key={props.id} show={show} onHide={hideModal} animation={false}>
             <Modal.Header closeButton>
                 <Modal.Title>Edit Product</Modal.Title>  
             </Modal.Header>

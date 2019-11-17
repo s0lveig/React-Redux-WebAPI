@@ -5,6 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
+
+/**
+ * Functional component for a Modal with the form for adding a chair to the database.
+ * Containing a few default values in case nothing is typed into form.
+ */
 const AddChair = (props) => {
   const { show, closeModal } = props;
   const [ state, setState ] = useState({
@@ -68,14 +73,13 @@ const AddChair = (props) => {
         axios.post("https://localhost:5001/chairs", newChair);
         closeModal();
         alert("New chair added!");
-        //window.location.reload();
     }
 
   return (
     <>
       <Modal show={show} onHide={closeModal} animation={false}>
         <Modal.Header closeButton>
-                    <Modal.Title>Add Product</Modal.Title>
+                    <Modal.Title>Add Chair</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={ addNewChair }>

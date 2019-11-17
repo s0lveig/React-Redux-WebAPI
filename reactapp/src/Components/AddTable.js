@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
-const AddChair = (props) => {
+const AddTable = (props) => {
   const { show, closeModal } = props;
   const [ state, setState ] = useState({
-    title: "Chair Title",
+    title: "Table title",
     year: 1900,
     producer: "Producer",
     designer: "Designer",
-    category: "Lounge Chair",
+    category: "Dining Table",
     description: "Description",
     condition: true,
     price: 0,
@@ -27,7 +27,7 @@ const AddChair = (props) => {
         });
     }
 
-    const addNewChair = ( event ) => {
+    const addNewTable = ( event ) => {
         event.preventDefault();
         let file = document.getElementById("upload-img");
         let data = new FormData();
@@ -37,7 +37,7 @@ const AddChair = (props) => {
             state.condition = false
         }
     
-        let newChair = { 
+        let newTable = { 
             title: state.title, 
             year: Number.parseInt(state.year, 10),
             producer: state.producer,
@@ -56,7 +56,7 @@ const AddChair = (props) => {
             } else { 
                 axios({
                     method: 'post',
-                    url: 'https://localhost:5001/Chairs/uploadImg',
+                    url: 'https://localhost:5001/Tables/uploadImg',
                     data: data,
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 })
@@ -65,9 +65,9 @@ const AddChair = (props) => {
             return imgFile
         }
 
-        axios.post("https://localhost:5001/chairs", newChair);
+        axios.post("https://localhost:5001/tables", newTable);
         closeModal();
-        alert("New chair added!");
+        alert("New table added!");
         //window.location.reload();
     }
 
@@ -78,7 +78,7 @@ const AddChair = (props) => {
                     <Modal.Title>Add Product</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={ addNewChair }>
+                        <Form onSubmit={ addNewTable }>
                             <Form.Control onChange={handleChange} name="title" type="text" value={state.title} className="mb-2" />
                             <Form.Control onChange={handleChange} name="designer" type="text" value={state.designer} className="mb-2" />
                             <Form.Control onChange={handleChange} name="producer" type="text" value={state.producer} className="mb-2" />
@@ -89,9 +89,9 @@ const AddChair = (props) => {
                                 </Col>
                                 <Col>
                                     <Form.Control onChange={handleChange} as="select" name="category">
-                                        <option>Lounge Chair</option>
-                                        <option>Dining Chair</option>
-                                        <option>Office Chair</option>
+                                        <option>Dining Table</option>
+                                        <option>Coffee Table</option>
+                                        <option>Side Table</option>
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
@@ -120,4 +120,4 @@ const AddChair = (props) => {
   );
 }
 
-export default AddChair;
+export default AddTable;

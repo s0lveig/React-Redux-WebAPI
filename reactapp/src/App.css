@@ -1,8 +1,5 @@
 body {
   background-color: #efefef;
   font-family: 'GoodSans-Light', sans-serif;
-}
-
-.card img {
-  width: 100%;
+  line-height: 1;
 }

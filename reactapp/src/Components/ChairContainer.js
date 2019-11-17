@@ -25,6 +25,11 @@ class ChairContainer extends Component {
 
     getChairs() {
         let allChairs = this.state.chairArray.map( chair => {
+            if(chair.condition === true) {
+                chair.condition = "New";
+            } else {
+                chair.condition = "Used";
+            }
             return <Chair
                 key={chair.id}
                 id={chair.id}

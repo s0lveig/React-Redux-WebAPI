@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using webAPI.Models;
 using System.IO;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace webAPI.Controllers {
 
     [ApiController]
+    [EnableCors("AllowAnyOrigin")]
     [Route("[controller]")]
     public class ChairsController : Controller {
 

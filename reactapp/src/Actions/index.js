@@ -1,6 +1,8 @@
-export const addChair = (newChair) => {
+export const addTodo = (newTodo) => {
     return {
-        type: "ADD_CHAIR",
-        newChair
+        type: "ADD_TODO",
+        newTodo: {
+            title: ""
+        }
     }
 }

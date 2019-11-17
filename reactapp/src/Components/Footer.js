@@ -2,10 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return(
-        <footer className="container-fluid">
+        <footer className="container-fluid mt-5">
             <div className="row">
                 <div className="col-12">
-                    <p>Hello footer</p>
+                    <p><small>Need support? it@adminpanel.com</small></p>
                 </div>
             </div>
         </footer>

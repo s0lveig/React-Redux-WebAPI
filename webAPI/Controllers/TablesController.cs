@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Hosting;
 using webAPI.Models;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -7,13 +11,16 @@ using Microsoft.EntityFrameworkCore;
 namespace webAPI.Controllers {
 
     [ApiController]
+    [EnableCors("AllowAnyOrigin")]
     [Route("[controller]")]
     public class TablesController : Controller {
 
         private readonly FurnitureContext _context;
+        private readonly IWebHostEnvironment _hosting;
 
-        public TablesController(FurnitureContext context) {
+        public TablesController(FurnitureContext context, IWebHostEnvironment hosting) {
             _context = context;
+            _hosting = hosting;
         }
 
         [HttpGet]
@@ -27,6 +34,16 @@ namespace webAPI.Controllers {
             _context.Table.Add(newTable);
             await _context.SaveChangesAsync();
             return newTable;
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public void uploadImg(IFormFile file) {
+            string webrootpath = _hosting.WebRootPath;
+            string absolutepath = Path.Combine($"{webrootpath}/images/{file.FileName}");
+            using(var filestream = new FileStream(absolutepath, FileMode.Create)) {
+                file.CopyTo(filestream);
+            }
         }
 
         [HttpPut]

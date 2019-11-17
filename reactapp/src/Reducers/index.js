@@ -1,9 +1,9 @@
 import {combineReducers } from 'redux';
-import chairListReducer from './chairListReducer';
+import todoListReducer from './todoListReducer';
 
 const allReducers = combineReducers(
     {
-        chairList: chairListReducer
+        todoList: todoListReducer
     }
 );
 

@@ -27,13 +27,16 @@ namespace webAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(
-                options => options.AddPolicy("AllowAll", 
+                options => {
+                    options.AddPolicy("AllowAnyOrigin", 
                     builder => builder
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin()
-                )
+                    );
+                }
             );
+
             services.AddDbContext<FurnitureContext>(
                 options => options.UseSqlite("Data source=FurnitureDb.db")
             );
@@ -49,15 +52,13 @@ namespace webAPI
 
             app.UseStaticFiles();
             
-            app.UseCors("AllowAll");
+            app.UseCors("AllowAnyOrigin");
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {

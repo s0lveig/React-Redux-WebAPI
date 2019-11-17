@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
-const Chair = (props) => {
+const Table = (props) => {
     const [ state, setState ] = useState('');
     const [show, setShow] = useState(false);
     const hideModal = () => setShow(false);
@@ -20,15 +20,15 @@ const Chair = (props) => {
         });
     }
 
-    const delChair = ( ) => {
+    const delTable = ( ) => {
         let id = props.id
-        axios.delete("https://localhost:5001/chairs/" + id);
+        axios.delete("https://localhost:5001/tables/" + id);
         setShow(false);
-        alert("Chair deleted!");
+        alert("Table deleted!");
         window.location.reload();
     }
 
-    const editChair = ( event ) => {
+    const editTable = ( event ) => {
         event.preventDefault();
 
         let file = document.getElementById("upload-img");
@@ -50,7 +50,7 @@ const Chair = (props) => {
             }
         }
 
-        let updateChair = { 
+        let updateTable = { 
             id: props.id,
             title: state.title, 
             year: Number.parseInt(state.year, 10),
@@ -70,7 +70,7 @@ const Chair = (props) => {
             } else { 
                 axios({
                     method: 'post',
-                    url: 'https://localhost:5001/Chairs/uploadImg',
+                    url: 'https://localhost:5001/Tables/uploadImg',
                     data: data,
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 })
@@ -79,18 +79,18 @@ const Chair = (props) => {
             return imgFile
         }
         
-        for(var key in updateChair) {
-            if(updateChair[key] === undefined) {
-                updateChair[key] = props[key];
+        for(var key in updateTable) {
+            if(updateTable[key] === undefined) {
+                updateTable[key] = props[key];
             } 
-            if(Object.is(updateChair[key], NaN)) {
-                updateChair[key] = Number.parseInt(props[key], 10)
+            if(Object.is(updateTable[key], NaN)) {
+                updateTable[key] = Number.parseInt(props[key], 10)
             }
         }
 
-        axios.put("https://localhost:5001/chairs", updateChair);
+        axios.put("https://localhost:5001/tables", updateTable);
         setShow(false);
-        alert("Chair updated!");
+        alert("Table updated!");
         pageReload();
     }
 
@@ -116,7 +116,7 @@ const Chair = (props) => {
                 </div>
                 <div className="card-footer text-right">
                     <div className="row justify-content-between pl-2 pr-2">
-                        <Button className="col-2" variant="danger" onClick={delChair}><span className="fa fa-trash-o"></span></Button>
+                        <Button className="col-2" variant="danger" onClick={delTable}><span className="fa fa-trash-o"></span></Button>
                         <Button variant="secondary" size="sm" onClick={openModal}>Edit</Button>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ const Chair = (props) => {
                 <Modal.Title>Edit Product</Modal.Title>  
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={editChair}>
+                <Form onSubmit={editTable}>
                     <Form.Row>
                         <Form.Label column sm="3">Title: </Form.Label>
                         <Col><Form.Control onChange={handleChange} name="title" type="text" placeholder={props.title} className="mb-2" /></Col>
@@ -136,9 +136,9 @@ const Chair = (props) => {
                         <Form.Label column sm="3">Category: </Form.Label>
                         <Col>
                             <Form.Control onChange={handleChange} as="select" name="category" className="mb-2">
-                                <option>Lounge Chair</option>
-                                <option>Dining Chair</option>
-                                <option>Office Chair</option>
+                                <option>Dining Table</option>
+                                <option>Coffee Table</option>
+                                <option>Side Table</option>
                             </Form.Control>
                         </Col>
                     </Form.Row>
@@ -177,7 +177,7 @@ const Chair = (props) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>        
-                <Button className="mr-auto" variant="danger" onClick={delChair}>Delete</Button>
+                <Button className="mr-auto" variant="danger" onClick={delTable}>Delete</Button>
                 <Button variant="outline-secondary" onClick={hideModal}>Close</Button>
             </Modal.Footer>
         </Modal>    
@@ -185,4 +185,4 @@ const Chair = (props) => {
     )
 }
 
-export default Chair;
+export default Table;

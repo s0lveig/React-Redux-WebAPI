@@ -7,17 +7,17 @@ import axios from 'axios';
 
 
 /**
- * Functional component for a Modal with the form for adding a chair to the database.
+ * Functional component for a Modal with the form for adding a light to the database.
  * Containing a few default values and placeholder image in case nothing is typed into form.
  */
-const AddChair = (props) => {
+const AddLighting = (props) => {
   const { show, closeModal } = props;
   const [ state, setState ] = useState({
-    title: "Chair Title",
+    title: "Lighting Title",
     year: 1900,
     producer: "Producer",
     designer: "Designer",
-    category: "Lounge Chair",
+    category: "Floor Lamp",
     description: "Description",
     condition: true,
     price: 0,
@@ -32,7 +32,7 @@ const AddChair = (props) => {
         });
     }
 
-    const addNewChair = ( event ) => {
+    const addNewLight = ( event ) => {
         event.preventDefault();
         let file = document.getElementById("upload-img");
         let data = new FormData();
@@ -42,7 +42,7 @@ const AddChair = (props) => {
             state.condition = false
         }
     
-        let newChair = { 
+        let newLight = { 
             title: state.title, 
             year: Number.parseInt(state.year, 10),
             producer: state.producer,
@@ -57,11 +57,11 @@ const AddChair = (props) => {
         function setImg() {
             let imgFile = "imgfile"
             if(file.files[0] === undefined){
-                imgFile = "lcm.jpg"
+                imgFile = "ph5.jpg"
             } else { 
                 axios({
                     method: 'post',
-                    url: 'https://localhost:5001/Chairs/uploadImg',
+                    url: 'https://localhost:5001/Lights/uploadImg',
                     data: data,
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 })
@@ -70,19 +70,19 @@ const AddChair = (props) => {
             return imgFile
         }
 
-        axios.post("https://localhost:5001/chairs", newChair);
+        axios.post("https://localhost:5001/lights", newLight);
         closeModal();
-        alert("New chair added! Refresh page");
+        alert("New lighting added! Refresh page");
     }
 
   return (
     <>
       <Modal show={show} onHide={closeModal} animation={false}>
         <Modal.Header closeButton>
-                    <Modal.Title>Add Chair</Modal.Title>
+                    <Modal.Title>Add Lighting</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={ addNewChair }>
+                        <Form onSubmit={ addNewLight }>
                             <Form.Control onChange={handleChange} name="title" type="text" value={state.title} className="mb-2" />
                             <Form.Control onChange={handleChange} name="designer" type="text" value={state.designer} className="mb-2" />
                             <Form.Control onChange={handleChange} name="producer" type="text" value={state.producer} className="mb-2" />
@@ -93,9 +93,10 @@ const AddChair = (props) => {
                                 </Col>
                                 <Col>
                                     <Form.Control onChange={handleChange} as="select" name="category">
-                                        <option>Lounge Chair</option>
-                                        <option>Dining Chair</option>
-                                        <option>Office Chair</option>
+                                        <option>Floor Lamp</option>
+                                        <option>Ceiling Lamp</option>
+                                        <option>Table Lamp</option>
+                                        <option>Wall Lamp</option>
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
@@ -124,4 +125,4 @@ const AddChair = (props) => {
   );
 }
 
-export default AddChair;
+export default AddLighting;

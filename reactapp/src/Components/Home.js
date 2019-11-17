@@ -21,7 +21,7 @@ const Home = () => {
                     </div>
                 </div>
             }
-        });
+        })
         return todos;
     }
 
@@ -36,7 +36,7 @@ const Home = () => {
                     </div>
                 </div>
             }
-        });
+        })
         return todos;
     }
 
@@ -49,6 +49,9 @@ const Home = () => {
                     
                     <Button size="lg" className="p-4 m-2" variant="secondary" href="/chairs">Chairs</Button>
                     <Button size="lg" className="p-4 m-2" variant="secondary" href="/tables">Tables</Button>
+                    <Button size="lg" className="p-4 m-2" variant="secondary" href="/sofas">Sofas</Button>
+                    <Button size="lg" className="p-4 m-2" variant="secondary" href="/lighting">Lighting</Button>
+                    <Button size="lg" className="p-4 m-2" variant="secondary" href="/storage">Storage</Button>
                 </div>
             </div>
 
@@ -57,7 +60,7 @@ const Home = () => {
                 <AddTask />
                 <div className="row mt-3 mr-3 ml-3 mb-5">
                     <div className="col-12 col-sm-6 mt-4">
-                        <h5 className="text-uppercase">Todo</h5>
+                        <h5 className="text-uppercase">To do</h5>
                         <div className="row">{ getTodos() }</div>
                     </div>
                     <div className="col-12 col-sm-6 mt-4">

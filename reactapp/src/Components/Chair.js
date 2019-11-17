@@ -95,7 +95,7 @@ const Chair = (props) => {
 
         axios.put("https://localhost:5001/chairs", updateChair);
         setShow(false);
-        alert("Chair updated!");
+        alert("Chair updated! Refresh page");
     }
 
     return(

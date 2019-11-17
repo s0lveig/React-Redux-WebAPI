@@ -8,8 +8,8 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(FurnitureContext))]
-    [Migration("20191104122335_initialcreate")]
-    partial class initialcreate
+    [Migration("20191117154719_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,44 +53,6 @@ namespace webAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Chair");
-                });
-
-            modelBuilder.Entity("webAPI.Models.Decor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Condition")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Designer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Producer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Decor");
                 });
 
             modelBuilder.Entity("webAPI.Models.Lighting", b =>
@@ -243,44 +205,6 @@ namespace webAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Table");
-                });
-
-            modelBuilder.Entity("webAPI.Models.Textile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Condition")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Designer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Producer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Textile");
                 });
 #pragma warning restore 612, 618
         }

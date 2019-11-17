@@ -5,15 +5,14 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
-
 /**
- * Functional component for displaying tables,
- * as well as containing the functions for deleting and editing a table.
- * Editing is done via a Modal connected to each table, thereby having that tables 
+ * Functional component for displaying sofas,
+ * as well as containing the functions for deleting and editing a sofa.
+ * Editing is done via a Modal connected to each sofa, thereby having that sofas 
  * default values in case nothing is edited.
  */
-const Table = (props) => {
-    const [ state, setState ] = useState('');
+const Sofa = (props) => {
+    const [state, setState] = useState('');
     const [show, setShow] = useState(false);
     const hideModal = () => setShow(false);
     const openModal = () => setShow(true);
@@ -26,14 +25,15 @@ const Table = (props) => {
         });
     }
 
-    const delTable = ( ) => {
+    const delSofa = () => {
         let id = props.id
-        axios.delete("https://localhost:5001/tables/" + id);
+        axios.delete("https://localhost:5001/sofas/" + id);
         setShow(false);
-        alert("Table deleted!");
+        alert("Sofa deleted!");
+        window.location.reload();
     }
 
-    const editTable = ( event ) => {
+    const editSofa = ( event ) => {
         event.preventDefault();
 
         let file = document.getElementById("upload-img");
@@ -55,7 +55,7 @@ const Table = (props) => {
             }
         }
 
-        let updateTable = { 
+        let updateSofa = { 
             id: props.id,
             title: state.title, 
             year: Number.parseInt(state.year, 10),
@@ -75,7 +75,7 @@ const Table = (props) => {
             } else { 
                 axios({
                     method: 'post',
-                    url: 'https://localhost:5001/Tables/uploadImg',
+                    url: 'https://localhost:5001/Sofas/uploadImg',
                     data: data,
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 })
@@ -84,23 +84,23 @@ const Table = (props) => {
             return imgFile
         }
         
-        for(var key in updateTable) {
-            if(updateTable[key] === undefined) {
-                updateTable[key] = props[key];
+        for(var key in updateSofa) {
+            if(updateSofa[key] === undefined) {
+                updateSofa[key] = props[key];
             } 
-            if(Object.is(updateTable[key], NaN)) {
-                updateTable[key] = Number.parseInt(props[key], 10)
+            if(Object.is(updateSofa[key], NaN)) {
+                updateSofa[key] = Number.parseInt(props[key], 10)
             }
         }
 
-        axios.put("https://localhost:5001/tables", updateTable);
+        axios.put("https://localhost:5001/sofas", updateSofa);
         setShow(false);
-        alert("Table updated! Refresh page");
+        alert("Sofa updated! Refresh page");
     }
 
     return(
         <>
-        <div key="k" className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2">
+        <div key={`card-${props.id}`} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2">
             <div className="card shadow-sm">
                 <img src={ 'https://localhost:5001/images/' + props.image} alt={props.image} className="card-img-top" />
                 <div className="card-body">
@@ -120,18 +120,18 @@ const Table = (props) => {
                 </div>
                 <div className="card-footer text-right">
                     <div className="row justify-content-between pl-2 pr-2">
-                        <Button className="col-2" variant="danger" onClick={delTable}><span className="fa fa-trash-o"></span></Button>
+                        <Button className="col-2" variant="danger" onClick={delSofa}><span className="fa fa-trash-o"></span></Button>
                         <Button variant="secondary" size="sm" onClick={openModal}>Edit</Button>
                     </div>
                 </div>
             </div>
         </div>
-        <Modal key={props.id} show={show} onHide={hideModal} animation={false}>
+        <Modal key={`modal-${props.id}`}  show={show} onHide={hideModal} animation={false}>
             <Modal.Header closeButton>
                 <Modal.Title>Edit Product</Modal.Title>  
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={editTable}>
+                <Form onSubmit={editSofa}>
                     <Form.Row>
                         <Form.Label column sm="3">Title: </Form.Label>
                         <Col><Form.Control onChange={handleChange} name="title" type="text" placeholder={props.title} className="mb-2" /></Col>
@@ -140,9 +140,9 @@ const Table = (props) => {
                         <Form.Label column sm="3">Category: </Form.Label>
                         <Col>
                             <Form.Control onChange={handleChange} as="select" name="category" className="mb-2">
-                                <option>Dining Table</option>
-                                <option>Coffee Table</option>
-                                <option>Side Table</option>
+                                <option>Two Seat</option>
+                                <option>Three Seat</option>
+                                <option>Daybed</option>
                             </Form.Control>
                         </Col>
                     </Form.Row>
@@ -181,7 +181,7 @@ const Table = (props) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>        
-                <Button className="mr-auto" variant="danger" onClick={delTable}>Delete</Button>
+                <Button className="mr-auto" variant="danger" onClick={delSofa}>Delete</Button>
                 <Button variant="outline-secondary" onClick={hideModal}>Close</Button>
             </Modal.Footer>
         </Modal>    
@@ -189,4 +189,4 @@ const Table = (props) => {
     )
 }
 
-export default Table;
+export default Sofa;

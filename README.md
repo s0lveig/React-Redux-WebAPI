@@ -7,4 +7,4 @@ C# WebAPI - containing Controllers, Models, Database and CORS-configuration.
 
 React SPA - using Redux, Axios and styled using the Bootstrap framework.
 
-The application runs with yarn, see react [React](reactapp/README.md) for more information.
+The application runs with yarn, see [React Readme](reactapp/README.md) for more information.

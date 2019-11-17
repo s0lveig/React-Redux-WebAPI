@@ -7,6 +7,9 @@ import Home from './Components/Home';
 import Footer from './Components/Footer';
 import ChairContainer from './Components/ChairContainer';
 import TableContainer from './Components/TableContainer';
+import SofaContainer from './Components/SofaContainer';
+import StorageContainer from './Components/StorageContainer';
+import LightingContainer from './Components/LightingContainer';
 
 /**
  * The main project application page, containing the Routing funcionality.
@@ -22,6 +25,9 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/chairs" component={ChairContainer} />
               <Route path="/tables" component={TableContainer} />
+              <Route path="/sofas" component={SofaContainer} />
+              <Route path="/lighting" component={LightingContainer} />
+              <Route path="/storage" component={StorageContainer} />
             </Switch>
           </main>
         <Route component={Footer} />

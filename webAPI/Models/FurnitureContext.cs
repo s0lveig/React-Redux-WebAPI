@@ -11,7 +11,5 @@ namespace webAPI.Models {
         public DbSet<Table> Table { get; set; }
         public DbSet<Storage> Storage { get; set; }
         public DbSet<Lighting> Lighting { get; set; }
-        public DbSet<Textile> Textile { get; set; }
-        public DbSet<Decor> Decor { get; set; }
     }
 }

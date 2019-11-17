@@ -8,7 +8,7 @@ import axios from 'axios';
 
 /**
  * Functional component for a Modal with the form for adding a table to the database.
- * Containing a few default values in case nothing is typed into form.
+ * Containing a few default values and placeholder image in case nothing is typed into form.
  */
 const AddTable = (props) => {
   const { show, closeModal } = props;
@@ -72,7 +72,7 @@ const AddTable = (props) => {
 
         axios.post("https://localhost:5001/tables", newTable);
         closeModal();
-        alert("New table added!");
+        alert("New table added! Refresh page");
     }
 
   return (
@@ -108,7 +108,7 @@ const AddTable = (props) => {
                                 </Col>
                             </Form.Row>
                             {['checkbox'].map(check => (
-                            <Form.Check className="mt-3 mb-3" onChange={handleChange} name="condition" inline label="Vintage" check={check} id="check-condition"  />
+                            <Form.Check className="mt-3 mb-3" onChange={handleChange} name="condition" inline label="Used" check={check} id="check-condition"  />
                             ))}
                         <Form.Control as="textarea" onChange={handleChange} name="description" value={state.description} className="mb-2" />
                         <input onChange={handleChange} id="upload-img" type="file" name="image" />

@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import AddChair from './AddChair';
 import AddTable from './AddTable';
+import AddSofa from './AddSofa';
+import AddLighting from './AddLighting';
+import AddStorage from './AddStorage';
 import { HashLink as Link } from 'react-router-hash-link';
 
 /**
@@ -21,6 +24,12 @@ const Header = () => {
             return <AddChair closeModal={closeModal} show={show} />
         } else if(url === "http://localhost:3000/tables") {
             return <AddTable closeModal={closeModal} show={show} />
+        } else if(url === "http://localhost:3000/sofas") {
+            return <AddSofa closeModal={closeModal} show={show} />
+        } else if(url === "http://localhost:3000/lighting") {
+            return <AddLighting closeModal={closeModal} show={show} />
+        } else if(url === "http://localhost:3000/storage") {
+            return <AddStorage closeModal={closeModal} show={show} />
         }
     }
 
@@ -35,15 +44,18 @@ const Header = () => {
     return(
         <header id="header-container" className="container-fluid">
             <div className="row">
-                <div className="col-sm-6 mt-2 mr-auto">
+                <div className="col-md-8 mt-3 mr-auto">
                     <nav>
                         <Link to="/" className="text-reset p-1">Home</Link>
                         <Link to="/chairs" className="text-reset p-1">Chairs</Link>
                         <Link to="/tables" className="text-reset p-1">Tables</Link>
-                        <Link to="/#taskboard" className="text-reset p-1">Task-Board</Link>
+                        <Link to="/sofas" className="text-reset p-1">Sofas</Link>
+                        <Link to="/lighting" className="text-reset p-1">Lighting</Link>
+                        <Link to="/storage" className="text-reset p-1">Storage</Link>
+                        <Link to="/#taskboard" className="text-reset p-1">TaskBoard</Link>
                     </nav>
                 </div>
-                <Button className="col-md-2 col-sm-3 ml-3 mr-3 mt-2 mb-2" variant="outline-dark" size="sm" onClick={showModal}>Add product +</Button>
+                <Button className="col-md-2 ml-3 mr-3 mt-2 mb-2" variant="outline-dark" size="sm" onClick={showModal}>Add product +</Button>
             </div>
             {displayModal()}
         </header>
